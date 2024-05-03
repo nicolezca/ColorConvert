@@ -9,7 +9,7 @@ const routes = require('./routes/routes');
 app.use('/', routes);
 app.use(express.static('public/css/'))
 app.use(express.static('public/js'))
-app.use(express.static('assets/'))
+app.use(express.static('./assets/'))
 
 const PORT = process.env.PORT || 4321
 app.listen(PORT, () => {

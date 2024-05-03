@@ -2,13 +2,6 @@
 
 ColorConvert es una herramienta en línea diseñada para ayudarte a explorar y convertir entre diferentes modelos de color, permitiéndote trabajar con una amplia gama de colores de manera eficiente y precisa.
 
-
-## Tabla de Contenidos
-
-1. [Instalación](#instalación)
-2. [Contribución](#contribución)
-3. [Licencia](#licencia)
-
 ## Instalación
 
 Proporciona instrucciones sobre cómo instalar tu proyecto y cómo configurarlo.
@@ -39,11 +32,6 @@ Nuestra interfaz está diseñada para ser intuitiva y fácil de usar, permitién
 ### Totalmente gratuito:
 ColorConvert es completamente gratuito y no requiere registro ni suscripción. Puedes usarlo en cualquier momento y en cualquier lugar, ¡todo lo que necesitas es una conexión a Internet!
 
-
-
-### ¡Comienza ahora!
-Explora la gama completa de modelos de color, convierte entre ellos y simplifica tu flujo de trabajo de diseño con ColorConvert. ¡Prueba nuestra herramienta hoy mismo y lleva tus proyectos de diseño al siguiente nivel!
-
 ## Contribución
 
 1. Haz un fork del proyecto.
@@ -52,5 +40,5 @@ Explora la gama completa de modelos de color, convierte entre ellos y simplifica
 4. Empuja la rama (```git push origin feature/nueva-caracteristica```).
 5. Abre un pull request.
 
-## Licencia
-Este proyecto está licenciado bajo MIT License.
+## ¡Comienza ahora!
+Explora la gama completa de modelos de color, convierte entre ellos y simplifica tu flujo de trabajo de diseño con ColorConvert. ¡Prueba nuestra herramienta hoy mismo y lleva tus proyectos de diseño al siguiente nivel!

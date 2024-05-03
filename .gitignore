@@ -20,6 +20,3 @@ yarn.lock
 # Otros archivos generados
 *.log
 npm-debug.log*
-
-# Archivos de dependencias
-package.json

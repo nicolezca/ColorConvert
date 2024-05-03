@@ -1,0 +1,50 @@
+.result-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: 1rem;
+
+}
+
+.result-container .result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.result .result-color {
+    padding: 10px;
+    width: 100px;
+    cursor: pointer;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.219), transparent);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+}
+
+.result-color>div {
+    width: 20px;
+    height: 20px;
+    outline: 1px solid white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.result-color p {
+    margin-bottom: .5rem;
+    font-size: 22px;
+}
+
+.copy-message {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.copy-message.show {
+    opacity: 1;
+}

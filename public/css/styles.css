@@ -1,0 +1,13 @@
+@import url(hero.css);
+@import url(formColor.css);
+@import url(resultColor.css);
+
+:root {
+    color-scheme: light dark;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}

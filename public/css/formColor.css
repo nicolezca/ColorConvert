@@ -1,0 +1,36 @@
+.content-form {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.content-form form {
+    width: 40%;
+    display: flex;
+}
+
+.content-form form input {
+    width: 70%;
+    padding: 15px 10px;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+
+    border: none;
+}
+
+.content-form form button {
+    padding: 10px 20px;
+    background: rgb(110, 57, 49);
+    border: none;
+    outline: none;
+    border-radius: 0 20px 20px 0;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+.content-form form button:hover {
+    background: rgb(61, 32, 28);
+}

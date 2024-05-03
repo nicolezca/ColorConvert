@@ -1,0 +1,25 @@
+# Node.js
+node_modules/
+
+# Archivos de configuración
+.env
+
+# Archivos de compilación
+/build/
+/dist/
+
+# Archivos generados por IDEs
+.idea/
+.vscode/
+
+# Archivos específicos de proyecto
+package-lock.json
+yarn.lock
+.DS_Store
+
+# Otros archivos generados
+*.log
+npm-debug.log*
+
+# Archivos de dependencias
+package.json

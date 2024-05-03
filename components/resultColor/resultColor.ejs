@@ -1,0 +1,56 @@
+<div class="result-container">
+    <% if (result && result.rgb) { %>
+        <div class="result">
+            <div class="result-color" data-clipboard-text="<%= result.rgb %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>RGB</p>
+                <span class="copy-btn">
+                    <%= result.rgb %>
+                </span>
+            </div>
+            <div class="result-color" data-clipboard-text="#<%= result.hex %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>HEX</p>
+                <span class="copy-btn">#<%= result.hex %></span>
+            </div>
+            <div class="result-color" data-clipboard-text="<%= result.hsl %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>HSL</p>
+                <span class="copy-btn">
+                    <%= result.hsl %>
+                </span>
+            </div>
+            <div class="result-color" data-clipboard-text="<%= result.hsv %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>HSV</p>
+                <span class="copy-btn">
+                    <%= result.hsv %>
+                </span>
+            </div>
+            <div class="result-color" data-clipboard-text="<%= result.cmyk %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>CMYK</p>
+                <span class="copy-btn">
+                    <%= result.cmyk %>
+                </span>
+            </div>
+            <div class="result-color" data-clipboard-text="<%= result.lab %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>LAB</p>
+                <span class="copy-btn">
+                    <%= result.lab %>
+                </span>
+            </div>
+            <div class="result-color" data-clipboard-text="<%= result.xyz %>">
+                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
+                <p>XYZ</p>
+                <span class="copy-btn">
+                    <%= result.xyz %>
+                </span>
+            </div>
+        </div>
+        <% } %>
+</div>
+<div class="copy-message-container">
+    <p class="copy-message">Copiado</p>
+</div>

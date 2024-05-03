@@ -1,12 +1,11 @@
 .content-banner {
     width: 100%;
     background: black;
-    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 350px;
+    height: 400px;
     position: relative;
 }
 
@@ -30,13 +29,16 @@
     background: rgba(0, 0, 0, .5);
     z-index: 2;
 }
-
+.content-banner img,
 .content-banner h1,
 .content-banner p {
     z-index: 5;
     position: relative;
 }
-
+.content-banner img{
+    width: 200px;
+    height: 200px;
+}
 .content-banner h1 {
     font-size: 50px;
     margin-bottom: 1rem;

@@ -39,9 +39,23 @@
     margin-bottom: .5rem;
     font-size: 22px;
 }
-
+.copy-message-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate( -50%, 0);
+}
 .copy-message {
     opacity: 0;
+    margin-bottom: 1rem;
+    background:rgb(110, 57, 49);
+    padding: 5px 1rem;
+    border-radius: 20px;
     transition: opacity 0.5s ease-in-out;
 }
 

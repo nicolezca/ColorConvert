@@ -2,10 +2,9 @@
     width: 100%;
     background: black;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 400px;
+    height: 350px;
     position: relative;
 }
 

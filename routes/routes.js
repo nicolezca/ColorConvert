@@ -1,4 +1,3 @@
-// routes.js
 const express = require('express');
 const router = express.Router();
 const colorConvert = require('color-convert');
@@ -8,103 +7,65 @@ router.get('/', (req, res) => {
 });
 
 router.post('/color', (req, res) => {
-    const colorInput = req.body.color;
+    let { color, fromFormat, toFormat } = req.body;
+    let rgb = null; // Variable para almacenar el color en formato RGB
 
-    // Intentar analizar los valores ingresados
-    let colorValues;
-    if (colorInput.startsWith("#")) {
-        // Si la entrada comienza con "#" asumimos que es un valor hexadecimal
-        colorValues = colorConvert.hex.rgb(colorInput); // Convertir a RGB
-    } else if (colorInput.startsWith("rgba")) {
-        colorValues = colorInput.match(/\d+(\.\d+)?/g).map(Number); // Analizar RGBA
+    // Verificar si el formato de origen es hexadecimal
+    if (fromFormat === 'hex') {
+        // Eliminar el carácter "#" del color y convertirlo a RGB
+        color = color.replace('#', '');
+        color = color.match(/.{1,2}/g).map(val => parseInt(val, 16));
+        fromFormat = 'rgb';
+        rgb = color; // Guardar el color RGB
+    } else if (fromFormat === 'hsl' || fromFormat === 'hsv' || fromFormat === 'cmyk' || fromFormat === 'lab' || fromFormat === 'xyz') {
+        // Si el formato de origen es HSL, HSV, CMYK, LAB o XYZ, convertirlo a RGB
+        color = color.split(',').map(val => parseFloat(val));
+        rgb = colorConvert[fromFormat].rgb(color);
+        fromFormat = 'rgb';
     } else {
-        colorValues = colorInput.split(',').map(value => parseFloat(value.trim())); // Analizar otros formatos
+        // Si el formato de origen no es hexadecimal, dividir el color en sus componentes
+        color = color.split(',').map(val => parseFloat(val));
+        rgb = color; // Guardar el color RGB
     }
 
-    // Verificar si se ingresaron suficientes valores para determinar el formato
-    if (colorValues.length === 3) {
-        // Si hay tres valores, asumimos que es RGB
-        const rgb = colorValues;
-        const hsl = colorConvert.rgb.hsl(...rgb);
-        const hsv = colorConvert.rgb.hsv(...rgb);
-        const cmyk = colorConvert.rgb.cmyk(...rgb);
-        const lab = colorConvert.rgb.lab(...rgb); // Convertir a LAB
-        const xyz = colorConvert.rgb.xyz(...rgb); // Convertir a XYZ
-        const hex = colorConvert.rgb.hex(...rgb); // Convertir a Hexadecimal
-        const result = { rgb: rgb, hsl: hsl, hsv: hsv, cmyk: cmyk, lab: lab, xyz: xyz, hex: hex };
-        return res.render('index', { result: result });
-    } else if (colorValues.length === 4) {
-        // Si hay cuatro valores, puede ser RGBA o CMYK
-        if (colorInput.startsWith("rgba")) {
-            // Si la entrada comienza con "rgba", asumimos que es RGBA
-            const rgba = colorValues;
-            const rgb = rgba.slice(0, 3); // Extraer RGB de RGBA
-            const hsl = colorConvert.rgb.hsl(...rgb);
-            const hsv = colorConvert.rgb.hsv(...rgb);
-            const cmyk = colorConvert.rgb.cmyk(...rgb);
-            const lab = colorConvert.rgb.lab(...rgb); // Convertir a LAB
-            const xyz = colorConvert.rgb.xyz(...rgb); // Convertir a XYZ
-            const hex = colorConvert.rgb.hex(...rgb); // Convertir a Hexadecimal
-            const result = { rgb: rgb, hsl: hsl, hsv: hsv, cmyk: cmyk, lab: lab, xyz: xyz, rgba: rgba, hex: hex };
-            return res.render('index', { result: result });
-        } else {
-            // De lo contrario, asumimos que es CMYK
-            const cmyk = colorValues;
-            const rgb = colorConvert.cmyk.rgb(...cmyk);
-            const hsl = colorConvert.rgb.hsl(...rgb);
-            const hsv = colorConvert.rgb.hsv(...rgb);
-            const lab = colorConvert.rgb.lab(...rgb); // Convertir a LAB
-            const xyz = colorConvert.rgb.xyz(...rgb); // Convertir a XYZ
-            const hex = colorConvert.rgb.hex(...rgb); // Convertir a Hexadecimal
-            const result = { rgb: rgb, hsl: hsl, hsv: hsv, cmyk: cmyk, lab: lab, xyz: xyz, hex: hex };
-            return res.render('index', { result: result });
-        }
-    } else if (colorValues.length === 6) {
-        // Si hay seis valores, asumimos que es RGB
-        const rgb = colorValues.slice(0, 3);
-        const hsl = colorConvert.rgb.hsl(...rgb);
-        const hsv = colorConvert.rgb.hsv(...rgb);
-        const cmyk = colorConvert.rgb.cmyk(...rgb);
-        const lab = colorConvert.rgb.lab(...rgb); // Convertir a LAB
-        const xyz = colorConvert.rgb.xyz(...rgb); // Convertir a XYZ
-        const hex = colorConvert.rgb.hex(...rgb); // Convertir a Hexadecimal
-        const result = { rgb: rgb, hsl: hsl, hsv: hsv, cmyk: cmyk, lab: lab, xyz: xyz, hex: hex };
-        return res.render('index', { result: result });
-    } else if (colorValues.length === 5) {
-        // Si hay cinco valores, asumimos que es HSL o HSV
-        // Esto es porque HSL y HSV tienen solo tres componentes, pero CMYK tiene cuatro
-        // Entonces, si hay cinco componentes, determinamos si es HSL o HSV
-        const saturation = colorValues[1];
-        const lightnessValue = colorValues[2];
-        const saturationIsPercentage = saturation >= 0 && saturation <= 100;
-        const lightnessIsPercentage = lightnessValue >= 0 && lightnessValue <= 100;
-        if (saturationIsPercentage && lightnessIsPercentage) {
-            // Si el segundo y tercer valores están en el rango de 0 a 100, asumimos que es HSL
-            const hsl = colorValues;
-            const rgb = colorConvert.hsl.rgb(...hsl);
-            const hsv = colorConvert.rgb.hsv(...rgb);
-            const cmyk = colorConvert.rgb.cmyk(...rgb);
-            const lab = colorConvert.rgb.lab(...rgb); // Convertir a LAB
-            const xyz = colorConvert.rgb.xyz(...rgb); // Convertir a XYZ
-            const hex = colorConvert.rgb.hex(...rgb); // Convertir a Hexadecimal
-            const result = { rgb: rgb, hsl: hsl, hsv: hsv, cmyk: cmyk, lab: lab, xyz: xyz, hex: hex };
-            return res.render('index', { result: result });
-        } else {
-            // De lo contrario, asumimos que es HSV
-            const hsv = colorValues;
-            const rgb = colorConvert.hsv.rgb(...hsv);
-            const hsl = colorConvert.rgb.hsl(...rgb);
-            const cmyk = colorConvert.rgb.cmyk(...rgb);
-            const lab = colorConvert.rgb.lab(...rgb); // Convertir a LAB
-            const xyz = colorConvert.rgb.xyz(...rgb); // Convertir a XYZ
-            const hex = colorConvert.rgb.hex(...rgb); // Convertir a Hexadecimal
-            const result = { rgb: rgb, hsl: hsl, hsv: hsv, cmyk: cmyk, lab: lab, xyz: xyz, hex: hex };
-            return res.render('index', { result: result });
-        }
-    } else {
-        // Si no hay suficientes valores, mostrar un mensaje de error
-        return res.render('index', { result: null });
+    // Verificar si el formato de origen es válido
+    if (!(fromFormat in colorConvert)) {
+        console.log('Formato de origen:', fromFormat);
+        return res.status(400).send('Formato de origen no válido');
     }
+
+    const results = {};
+
+    if (toFormat) {
+        // Si se especifican formatos de destino, convertir el color a esos formatos
+        if (Array.isArray(toFormat)) {
+            // Si toFormat es un array, iterar sobre cada formato de destino
+            toFormat.forEach(format => {
+                if (format === 'rgb') {
+                    // Si el formato de destino es "rgb", guardar el color en results
+                    results[format] = rgb;
+                } else if (format in colorConvert[fromFormat]) {
+                    // Si el formato de destino es válido, realizar la conversión y guardar en results
+                    results[format] = colorConvert[fromFormat][format](rgb);
+                } else {
+                    console.log('Formato de destino no válido:', format);
+                }
+            });
+        } else {
+            // Si toFormat es un solo formato, convertir el color a ese formato
+            if (toFormat === 'rgb') {
+                // Si el formato de destino es "rgb", guardar el color en results
+                results[toFormat] = rgb;
+            } else if (toFormat in colorConvert[fromFormat]) {
+                // Si el formato de destino es válido, realizar la conversión y guardar en results
+                results[toFormat] = colorConvert[fromFormat][toFormat](rgb);
+            } else {
+                console.log('Formato de destino no válido:', toFormat);
+            }
+        }
+    }
+
+    res.render('index', { result: results, rgb: rgb }); // Pasar el color RGB a la plantilla
 });
 
 module.exports = router;

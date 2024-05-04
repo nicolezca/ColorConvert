@@ -1,7 +1,60 @@
 <div class="content-form">
     <form action="/color" method="post">
-        <input type="text" id="color" name="color" autocomplete="off"
-            placeholder=" RGB, RGBA,HEX, HSL, HSV, CMYK LAB o XYZ">
+        <div class="form_top">
+            <div class="origenColor">
+                <label for="fromFormat">Origen:</label>
+                <select name="fromFormat" id="fromFormat">
+                    <option value="rgb">RGB</option>
+                    <option value="hex">HEX</option>
+                    <option value="hsl">HSL</option>
+                    <option value="hsv">HSV</option>
+                    <option value="cmyk">CMYK</option>
+                    <option value="lab">LAB</option>
+                    <option value="xyz">XYZ</option>
+                </select>
+
+            </div>
+            <div class="color">
+                <input type="text" id="color" name="color" autocomplete="off"  required><br><br>
+            </div>
+            <div class="destinoColor">
+                <label>destino:</label>
+                <div class="colortype">
+                    <input type="checkbox" id="rgb" name="toFormat" value="rgb">
+                    <label for="rgb">RGB</label>
+                </div>
+
+                <div class="colortype">
+                    <input type="checkbox" id="hex" name="toFormat" value="hex">
+                    <label for="hex">HEX</label>
+                </div>
+
+                <div class="colortype">
+                    <input type="checkbox" id="hsl" name="toFormat" value="hsl">
+                    <label for="hsl">HSL</label>
+                </div>
+
+                <div class="colortype">
+                    <input type="checkbox" id="hsv" name="toFormat" value="hsv">
+                    <label for="hsv">HSV</label>
+                </div>
+
+                <div class="colortype">
+                    <input type="checkbox" id="cmyk" name="toFormat" value="cmyk">
+                    <label for="cmyk">CMYK</label>
+                </div>
+
+                <div class="colortype">
+                    <input type="checkbox" id="lab" name="toFormat" value="lab">
+                    <label for="lab">LAB</label>
+                </div>
+
+                <div class="colortype">
+                    <input type="checkbox" id="xyz" name="toFormat" value="xyz">
+                    <label for="xyz">XYZ</label>
+                </div>
+            </div>
+        </div>
         <button type="submit"><i class='bx bx-search'></i></button>
     </form>
 </div>

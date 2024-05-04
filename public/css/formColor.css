@@ -1,36 +1,64 @@
-.content-form {
-    width: 100%;
-    margin-top: 1rem;
+.content-form{
+    width:70% ;
+    margin: .5rem auto;
+    background: rgb(28, 27, 27);
+    padding: 1rem;
+}
+.content-form form .form_top{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.content-form form .form_top .origenColor{
+    margin-right: 1rem;
+}
+.content-form form .form_top .origenColor label{
+    display: block;
+    margin-bottom: .5rem;
+}
+.content-form form .form_top .origenColor select{
+    -webkit-appearance: none; /* Para Safari y Chrome */
+    -moz-appearance: none; /* Para Firefox */
+    appearance: none;
+    padding: 5px 10px;
+    width: 100px;
+    background: black;
+}
+.content-form form .form_top .color{
+    margin-right: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
 }
-
-.content-form form {
+.content-form form .form_top .color input{
+    padding: 10px;
+    height: 100%;
+    width: 300px;
+    outline: none;
+    border: none;
+}
+.content-form form .form_top .destinoColor > label{
+    display: block;
+    margin-bottom: .5rem;
+}
+.content-form form .form_top .destinoColor .colortype{
+    display: inline-block;
+}
+.content-form form .form_top .destinoColor .colortype label {
+    margin-right: .5rem;
+}
+.content-form form button{
+    display: block;
     width: 40%;
-    display: flex;
-}
-
-.content-form form input {
-    width: 70%;
-    padding: 15px 10px;
-    border-radius: 20px 0 0 20px;
+    margin: .5rem auto 0 auto;
+    background: #7D5933;
     outline: none;
-
     border: none;
-}
-
-.content-form form button {
-    padding: 10px 20px;
-    background: rgb(110, 57, 49);
-    border: none;
-    outline: none;
-    border-radius: 0 20px 20px 0;
-    transition: all .3s ease-in-out;
+    border-radius: 20px;
+    padding: 10px;
     cursor: pointer;
 }
-
-.content-form form button:hover {
-    background: rgb(61, 32, 28);
+.content-form form button i{
+    color: black;
 }

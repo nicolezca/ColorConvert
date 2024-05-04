@@ -1,12 +1,20 @@
 .result-container {
-
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: stretch;
     margin-top: 1rem;
-
 }
-
+.result-container .paragraph{
+    color: gray;
+    margin-bottom: .5rem;
+}
+.result-container .paragraph p{
+    text-align: center;
+}
+.result-container .paragraph p code{
+    margin-right: 1rem;
+}
 .result-container .result {
     display: flex;
     align-items: center;
@@ -16,7 +24,7 @@
 
 .result .result-color {
     padding: 10px;
-    width: 100px;
+    width: 120px;
     cursor: pointer;
     background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.219), transparent);
     color: white;

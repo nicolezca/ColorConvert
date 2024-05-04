@@ -1,55 +1,73 @@
 <div class="result-container">
-    <% if (result && result.rgb) { %>
+    <div class="paragraph">
+        <p>Formatos</p>
+        <p>RGB = <code>0,0,0</code>HEX = <code>#ffffff</code> HSL = <code>210, 50%, 75%</code>HSV = <code>210, 100%, 100%</code>CMYK = <code>0, 0, 0, 100</code>LAB = <code>50, 0, 0</code>XYZ = <code>25, 25, 25</code></p>
+    </div>
+    <% if (result) { %>
         <div class="result">
-            <div class="result-color" data-clipboard-text="<%= result.rgb %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>RGB</p>
-                <span class="copy-btn">
-                    <%= result.rgb %>
-                </span>
-            </div>
-            <div class="result-color" data-clipboard-text="#<%= result.hex %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>HEX</p>
-                <span class="copy-btn">#<%= result.hex %></span>
-            </div>
-            <div class="result-color" data-clipboard-text="<%= result.hsl %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>HSL</p>
-                <span class="copy-btn">
-                    <%= result.hsl %>
-                </span>
-            </div>
-            <div class="result-color" data-clipboard-text="<%= result.hsv %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>HSV</p>
-                <span class="copy-btn">
-                    <%= result.hsv %>
-                </span>
-            </div>
-            <div class="result-color" data-clipboard-text="<%= result.cmyk %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>CMYK</p>
-                <span class="copy-btn">
-                    <%= result.cmyk %>
-                </span>
-            </div>
-            <div class="result-color" data-clipboard-text="<%= result.lab %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>LAB</p>
-                <span class="copy-btn">
-                    <%= result.lab %>
-                </span>
-            </div>
-            <div class="result-color" data-clipboard-text="<%= result.xyz %>">
-                <div style="background-color: rgb(<%= result.rgb.join(', ') %>);"></div>
-                <p>XYZ</p>
-                <span class="copy-btn">
-                    <%= result.xyz %>
-                </span>
-            </div>
+            <% if (result.rgb) { %>
+                <div class="result-color" data-clipboard-text="<%= result.rgb %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>RGB</p>
+                    <span class="copy-btn">
+                        <%= result.rgb.join(', ') %>
+                    </span>
+                </div>
+            <% } %>
+            <% if (result.hex) { %>
+                <div class="result-color" data-clipboard-text="#<%= result.hex %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>HEX</p>
+                    <span class="copy-btn">#<%= result.hex %></span>
+                </div>
+            <% } %>
+            <% if (result.hsl) { %>
+                <div class="result-color" data-clipboard-text="<%= result.hsl %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>HSL</p>
+                    <span class="copy-btn">
+                        <%= result.hsl.join(', ') %>
+                    </span>
+                </div>
+            <% } %>
+            <% if (result.hsv) { %>
+                <div class="result-color" data-clipboard-text="<%= result.hsv %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>HSV</p>
+                    <span class="copy-btn">
+                        <%= result.hsv.join(', ') %>
+                    </span>
+                </div>
+            <% } %>
+            <% if (result.cmyk) { %>
+                <div class="result-color" data-clipboard-text="<%= result.cmyk %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>CMYK</p>
+                    <span class="copy-btn">
+                        <%= result.cmyk.join(', ') %>
+                    </span>
+                </div>
+            <% } %>
+            <% if (result.lab) { %>
+                <div class="result-color" data-clipboard-text="<%= result.lab %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>LAB</p>
+                    <span class="copy-btn">
+                        <%= result.lab.join(', ') %>
+                    </span>
+                </div>
+            <% } %>
+            <% if (result.xyz) { %>
+                <div class="result-color" data-clipboard-text="<%= result.xyz %>">
+                    <div style="background-color: rgb(<%= rgb.join(', ') %>);"></div>
+                    <p>XYZ</p>
+                    <span class="copy-btn">
+                        <%= result.xyz.join(', ') %>
+                    </span>
+                </div>
+            <% } %>            
         </div>
-        <% } %>
+    <% } %>
 </div>
 <div class="copy-message-container">
     <p class="copy-message">Copiado</p>

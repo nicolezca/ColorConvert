@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 router.post('/color', (req, res) => {
     let { color, fromFormat, toFormat } = req.body;
-    let rgb = null; // Variable para almacenar el color en formato RGB
+    let rgb = null;
 
     // Verificar si el formato de origen es hexadecimal
     if (fromFormat === 'hex') {
@@ -16,7 +16,7 @@ router.post('/color', (req, res) => {
         color = color.replace('#', '');
         color = color.match(/.{1,2}/g).map(val => parseInt(val, 16));
         fromFormat = 'rgb';
-        rgb = color; // Guardar el color RGB
+        rgb = color;
     } else if (fromFormat === 'hsl' || fromFormat === 'hsv' || fromFormat === 'cmyk' || fromFormat === 'lab' || fromFormat === 'xyz') {
         // Si el formato de origen es HSL, HSV, CMYK, LAB o XYZ, convertirlo a RGB
         color = color.split(',').map(val => parseFloat(val));
@@ -25,7 +25,7 @@ router.post('/color', (req, res) => {
     } else {
         // Si el formato de origen no es hexadecimal, dividir el color en sus componentes
         color = color.split(',').map(val => parseFloat(val));
-        rgb = color; // Guardar el color RGB
+        rgb = color;
     }
 
     // Verificar si el formato de origen es válido
@@ -45,7 +45,7 @@ router.post('/color', (req, res) => {
                     // Si el formato de destino es "rgb", guardar el color en results
                     results[format] = rgb;
                 } else if (format in colorConvert[fromFormat]) {
-                    // Si el formato de destino es válido, realizar la conversión y guardar en results
+                    // Si el formato de destino es válido, realizar la conversión
                     results[format] = colorConvert[fromFormat][format](rgb);
                 } else {
                     console.log('Formato de destino no válido:', format);
@@ -57,7 +57,7 @@ router.post('/color', (req, res) => {
                 // Si el formato de destino es "rgb", guardar el color en results
                 results[toFormat] = rgb;
             } else if (toFormat in colorConvert[fromFormat]) {
-                // Si el formato de destino es válido, realizar la conversión y guardar en results
+                // Si el formato de destino es válido, realizar la conversión
                 results[toFormat] = colorConvert[fromFormat][toFormat](rgb);
             } else {
                 console.log('Formato de destino no válido:', toFormat);
@@ -65,7 +65,7 @@ router.post('/color', (req, res) => {
         }
     }
 
-    res.render('index', { result: results, rgb: rgb }); // Pasar el color RGB a la plantilla
+    res.render('index', { result: results, rgb: rgb });
 });
 
 module.exports = router;
